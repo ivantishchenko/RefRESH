@@ -1,3 +1,4 @@
 data/*
 smpl_data/*
 __pycache__
+.idea
