@@ -132,7 +132,7 @@ if __name__ == '__main__':
         help='set the index to run the jobs. The default is set to -1 and run all the jobs.')
     parser.add_argument('--processes', type=int, default=1, 
         help='the number of processes to run multi-jobs if execute run_all')
-    parser.add_argument('--scene', type=str, default="", help='scene to be rendered. If not set, renders all scences')
+    parser.add_argument('--scene', type=str, default="", help='scene to be rendered. If not set, renders all scenes')
     parser.add_argument('--keyframe', type=int, default=1, help='keyframe to be rendered. Default is 1')
     args = parser.parse_args()
 

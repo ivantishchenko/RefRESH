@@ -163,7 +163,7 @@ def render_worker(settings):
 
 if __name__ == '__main__':
 
-    BLENDER_PATH='~/develop/blender-2.79b'
+    BLENDER_PATH='~/develop/blender-2.79b-linux-glibc219-x86_64/'
 
     import argparse
     parser = argparse.ArgumentParser(description='Run BundleFusion')
@@ -171,12 +171,17 @@ if __name__ == '__main__':
         help='set the index to run the jobs. The default is set to -1 and run all the jobs.')
     parser.add_argument('--processes', type=int, default=1, 
         help='the number of processes to run multi-jobs if execute run_all')
+    parser.add_argument('--scene', type=str, default="", help='scene to be rendered. If not set, renders all scenes')
+    parser.add_argument('--keyframe', type=int, default=1, help='keyframe to be rendered. Default is 1')
     args = parser.parse_args()
 
-    scenes = ['apt0', 'apt1', 'apt2', 'copyroom', 'office0', 'office1', 'office2', 'office3']
-    # Note that 10, 20 keyframes are too large for training the scene flow
-    # You can choose not to render them
-    keyframes = [1, 2, 5, 10, 20] 
+    # Check whether a user wants one scene or all of them
+    if args.scene:
+        scenes = [args.scene]
+        keyframes = [args.keyframe]
+    else:
+        scenes = ['apt0', 'apt1', 'apt2', 'copyroom', 'office0', 'office1', 'office2', 'office3']
+        keyframes = [1, 2, 5, 10, 20]
 
     render_list = []
     for scene in scenes:
